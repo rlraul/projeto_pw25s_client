@@ -81,7 +81,7 @@ export function LoginPage() {
                     </div>
                     <div className="text-center mt-2">
                         <div className="row">
-                            <span>não possui cadastro? </span>
+                            <span>Não possui cadastro? </span>
                             <Link className="text-primary" to="/signup">Cadastrar-se</Link>
                         </div>
                     </div>
