@@ -42,11 +42,11 @@ export function LoginPage() {
       };
     
     return (
-        <div className="row">
-            <h1 className="text-center">Login</h1>
-            <div className="d-flex justify-content-center">
+        <div className="d-flex align-items-center justify-content-center vw-100">
+            <div className="row">
+                <h1 className="text-center">Login</h1>
                 <div className="container border border-secondary rounded p-2">
-                    <div className="col-12 mb-3">
+                    <div className="col-12 mb-2">
                         <label>Informe seu username</label>
                         <input
                             className={apiError ? "form-control is-invalid" : "form-control"}
@@ -57,7 +57,7 @@ export function LoginPage() {
                             value={form.username}
                         />
                     </div>
-                    <div className="col-12 mb-3">
+                    <div className="col-12 mb-2">
                         <label>Informe sua senha</label>
                         <input
                             className={apiError ? "form-control is-invalid" : "form-control"}
@@ -71,7 +71,7 @@ export function LoginPage() {
                     <div className="text-center">
                         <ButtonWithProgress 
                             onClick={onClickLogin} 
-                            className="btn btn-primary"
+                            className="btn btn-primary m-2"
                             disabled={pendingApiCall}
                             pendingApiCall={pendingApiCall}
                             text="Autenticar"
