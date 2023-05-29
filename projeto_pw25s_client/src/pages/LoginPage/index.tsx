@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ButtonWithProgress } from "../../ButtonWithProgress";
 import AuthService from "../../service/AuthService";
@@ -15,6 +15,17 @@ export function LoginPage() {
     const [pendingApiCall, setPendingApiCall] = useState(false);
     const navigate = useNavigate();
 
+    const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const { value, name } = event.target;
+        setForm((previousForm) => {
+          return {
+            ...previousForm,
+            [name]: value,
+          };
+        });
+        setApiError(false);
+      };
+    
     const onClickLogin = () => {
         const user: IUserLogin = {
           username: form.username,
@@ -53,7 +64,7 @@ export function LoginPage() {
                             type="text"
                             placeholder="Informe o seu username"
                             name="username"
-                            //onChange={onChange}
+                            onChange={onChange}
                             value={form.username}
                         />
                     </div>
@@ -64,7 +75,7 @@ export function LoginPage() {
                             type="password"
                             placeholder="Informe a sua senha"
                             name="password"
-                            //onChange={onChange}
+                            onChange={onChange}
                             value={form.password}
                         />
                     </div>
