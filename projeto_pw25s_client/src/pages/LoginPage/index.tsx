@@ -53,7 +53,7 @@ export function LoginPage() {
       };
     
     return (
-        <div className="d-flex align-items-center justify-content-center vw-100">
+        <div className="d-flex align-items-center justify-content-center vh-100">
             <div className="row">
                 <h1 className="text-center">Login</h1>
                 <div className="container border border-secondary rounded p-2">

@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { LoginPage } from "../../pages/LoginPage";
 import { AuthenticatedRoutes } from "../AuthenticatedRoutes";
+import { SignupPage } from "../../pages/SignupPage";
 
 export function BaseRoutes() {
     return (
@@ -8,7 +9,7 @@ export function BaseRoutes() {
         <Routes>
           {/* Public Routes */}
           <Route path="/login" element={<LoginPage />} />
-          {/* <Route path="/signup" element={<UserSignupPage />} /> */}
+          <Route path="/signup" element={<SignupPage />} />
   
           {/* Protected Routes */}
           <Route element={<AuthenticatedRoutes />}>
