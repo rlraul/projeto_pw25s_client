@@ -1,11 +1,12 @@
-import { LoginPage } from './pages/LoginPage'
+import { ChakraProvider } from "@chakra-ui/react"
+import { BaseRoutes } from "./routes/BaseRoutes"
 
 function App() {
   return (
-    <>
-      <LoginPage />
-    </>
-  )
+    <ChakraProvider>
+      <BaseRoutes />
+    </ChakraProvider>
+  );
 }
 
 export default App
