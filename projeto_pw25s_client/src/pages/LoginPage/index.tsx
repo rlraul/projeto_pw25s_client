@@ -31,25 +31,21 @@ export function LoginPage() {
           username: form.username,
           password: form.password,
         };
-        console.log(user);
         setPendingApiCall(true);
         AuthService.login(user)
               .then((response)=>{
-                console.log(response.data);
                 setUserAuthenticated(true);
                 setApiError(false);
                 localStorage.setItem("token", JSON.stringify(response.data.token));
                 navigate("/home");
               })
               .catch((responseError) => {
-                console.log(responseError.response);
                 setUserAuthenticated(false);
                 setApiError(true);
               })
               .finally( () => {
                 setPendingApiCall(false);
               });
-        console.log("DEPOIS DO POST DO AXIOS");
       };
     
     return (
