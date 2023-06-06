@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { LoginPage } from "../../pages/LoginPage";
 import { AuthenticatedRoutes } from "../AuthenticatedRoutes";
 import { SignupPage } from "../../pages/SignupPage";
+import { HomePage } from "../../pages/HomePage";
 
 export function BaseRoutes() {
     return (
@@ -12,9 +13,9 @@ export function BaseRoutes() {
           <Route path="/signup" element={<SignupPage />} />
   
           {/* Protected Routes */}
-          <Route element={<AuthenticatedRoutes />}>
-              {/* <Route path="/home" element={<HomePage />} />
-              <Route path="/" element={<HomePage />} /> */}
+          <Route element={<AuthenticatedRoutes />}> 
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/" element={<HomePage />} /> 
 
               {/* <Route path="/categories" element={<CategoryListPage />} />
               <Route path="/categories/new" element={<CategoryFormPage />} />

@@ -11,11 +11,9 @@ export function SignupPage() {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
-    reset,
   } = useForm<IUserSignup>();
   
   const [apiError, setApiError] = useState("");
-  const [pendingApiCall, setPendingApiCall] = useState(false);
   const navigate = useNavigate();
 
   const onSubmit = (data: IUserSignup) => {
@@ -85,10 +83,10 @@ export function SignupPage() {
                 {...register("password", {
                   required: "Campo Obrigatório",
                   minLength: {value: 4, message: "Sua senha deve ter no mínimo 6 caracteres"},
-                  pattern: {
-                    value: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$",
-                    message: "A senha deve conter no mímino 1 caractere maiúsculo",
-                  },
+                  // pattern: {
+                  //   value: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$",
+                  //   message: "A senha deve conter no mímino 1 caractere maiúsculo",
+                  // },
                 })}
               />
             </FormControl>
@@ -111,7 +109,7 @@ export function SignupPage() {
                 isLoading={isSubmitting}
                 type='submit'
               >
-                {pendingApiCall ? (<CircularProgress isIndeterminate size="20px" color="teal"></CircularProgress>) : ('Cadastrar')}
+                Cadastrar
               </Button>
 
               <div className="text-center mb-2">
