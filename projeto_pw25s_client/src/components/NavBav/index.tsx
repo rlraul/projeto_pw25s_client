@@ -4,7 +4,7 @@ import AuthService from "../../service/AuthService";
 
 export function NavBar() {
   const onClickLogout = () => {
-    //AuthService.logout();
+    AuthService.logout();
     window.location.reload();
   };
 
@@ -17,43 +17,43 @@ export function NavBar() {
             <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
                     <NavLink
-                    to="/"
-                    className={(navData) =>
+                      to="/"
+                      className={(navData) =>
                         navData.isActive ? "nav-link active" : "nav-link"
-                    }
+                      }
                     >
-                    Home
+                      Home
                     </NavLink>
                 </li>
                 <li className="nav-item">
                     <NavLink
-                    to="/categories"
-                    className={(navData) =>
+                      to="/categories"
+                      className={(navData) =>
                         navData.isActive ? "nav-link active" : "nav-link"
-                    }
+                      }
                     >
-                    Categorias
+                      Categorias
                     </NavLink>
                 </li>
                 <li className="nav-item">
                     <NavLink
-                    to="/accounts"
-                    className={(navData) =>
+                      to="/accounts"
+                      className={(navData) =>
                         navData.isActive ? "nav-link active" : "nav-link"
-                    }
+                      }
                     >
-                    Suas Contas
+                      Suas Contas
                     </NavLink>
                 </li>
 
                 <li className="nav-item">
                     <NavLink
-                    to="/movements"
-                    className={(navData) =>
+                      to="/movements"
+                      className={(navData) =>
                         navData.isActive ? "nav-link active" : "nav-link"
-                    }
+                      }
                     >
-                    Movimentações Financeiras
+                      Movimentações Financeiras
                     </NavLink>
                 </li>
             </ul>

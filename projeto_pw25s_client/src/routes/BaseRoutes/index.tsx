@@ -3,6 +3,7 @@ import { LoginPage } from "../../pages/LoginPage";
 import { AuthenticatedRoutes } from "../AuthenticatedRoutes";
 import { SignupPage } from "../../pages/SignupPage";
 import { HomePage } from "../../pages/HomePage";
+import { CategoryListPage } from "../../pages/CategoryPage";
 
 export function BaseRoutes() {
     return (
@@ -16,6 +17,8 @@ export function BaseRoutes() {
           <Route element={<AuthenticatedRoutes />}> 
             <Route path="/home" element={<HomePage />} />
             <Route path="/" element={<HomePage />} /> 
+
+            <Route path="/categories" element={<CategoryListPage />} />
 
               {/* <Route path="/categories" element={<CategoryListPage />} />
               <Route path="/categories/new" element={<CategoryFormPage />} />

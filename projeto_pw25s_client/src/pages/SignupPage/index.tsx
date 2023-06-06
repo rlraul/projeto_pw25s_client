@@ -21,12 +21,10 @@ export function SignupPage() {
       ...data,
     };
     AuthService.signup(user).then((Response) => {
-      console.log(data);
       navigate("/login");
     })
     .catch((responseError) => {
       setApiError("Não foi possível criar o usuário!");
-      console.log(data);
     })
   }
 
