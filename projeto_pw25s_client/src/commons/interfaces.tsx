@@ -11,6 +11,6 @@ export interface IUserLogin {
 
 export interface ICategory {
     id: number;
-    nome: string;
-    descricao: string;
+    name: string;
+    description: string;
 }

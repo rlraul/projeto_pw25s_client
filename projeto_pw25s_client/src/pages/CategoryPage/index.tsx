@@ -1,7 +1,7 @@
-import { Table, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import { Button, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { ICategory } from "../../commons/interfaces";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CategoryService from "../../service/CategoryService";
 
 export function CategoryListPage() {
@@ -15,7 +15,9 @@ export function CategoryListPage() {
     });
     
     const loadData = () => {
-        CategoryService.findAll().then((response) => {
+        CategoryService.findAll()
+        .then((response) => {
+            console.log(response.data);
             setData(response.data);
             setApiError("");
         }).catch((responseError) => {
@@ -25,8 +27,16 @@ export function CategoryListPage() {
     
     return (
         <div className="container">
-            <h1>Categorias</h1>
-
+            <div className="text-center">
+                <h3>Categorias</h3>
+            </div>
+            
+            <div className="d-flex justify-content-end">
+                <Link to="/categories/new" className="btn btn-success">
+                    Nova Categoria
+                </Link>
+            </div>
+            
             <div>
                 <TableContainer>
                     <Table>
@@ -34,20 +44,18 @@ export function CategoryListPage() {
                             <Tr>
                                 <Th>Id</Th>
                                 <Th>Nome</Th>
-                                <Th>Descrição</Th>
                             </Tr>
                         </Thead>
                         <Tbody>
-                            {data.map((category: ICategory) => 
+                            {data.map((category: ICategory) => (
                                 <Tr 
                                     key={category.id}
                                     _hover={{cursor: "pointer", background: "#eee"}}
                                 >
-                                    <td>{category.id}</td>
-                                    <td>{category.nome}</td>
-                                    <td>{category.descricao}</td>
+                                    <Td>{category.id}</Td>
+                                    <Td>{category.name}</Td>
                                 </Tr>
-                            )}
+                            ))}
                         </Tbody>
                     </Table>
                 </TableContainer>

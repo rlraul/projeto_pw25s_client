@@ -9,7 +9,7 @@ export function NavBar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light mb-3">
         {/* <Link to="/" className="navbar-brand">
         <img src={logo} width="60" alt="UTFPR" />
         </Link> */}
