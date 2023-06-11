@@ -3,7 +3,7 @@ import { LoginPage } from "../../pages/LoginPage";
 import { AuthenticatedRoutes } from "../AuthenticatedRoutes";
 import { SignupPage } from "../../pages/SignupPage";
 import { HomePage } from "../../pages/HomePage";
-import { CategoryListPage } from "../../pages/CategoryPage";
+import { CategoryListPage } from "../../pages/CategoryListPage";
 import { CategoryFormPage } from "../../pages/CategoryFormPage";
 
 export function BaseRoutes() {
