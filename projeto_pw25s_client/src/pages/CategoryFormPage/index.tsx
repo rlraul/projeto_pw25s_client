@@ -2,7 +2,7 @@ import { Button, Card, CardBody, CardFooter, CardHeader, FormControl, FormErrorM
 import { useForm } from "react-hook-form";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ICategory } from "../../commons/interfaces";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CategoryService from "../../service/CategoryService";
 
 export function CategoryFormPage() {
@@ -18,10 +18,46 @@ export function CategoryFormPage() {
     const navigate = useNavigate();
     const { id } = useParams();
 
+    const [entity, setEntity] = useState<ICategory>({
+        id: undefined,
+        name: "",
+        description: ""
+    });
+
+    useEffect(() => {
+        loadData();
+    }, []);
+
+    const loadData = async () => {
+        if (id) {
+            await CategoryService.findOne(parseInt(id))
+                .then((response) => {
+                    if (response.data) {
+                        console.log(response.data);
+                        setEntity({
+                            id: response.data.id,
+                            name: response.data.name,
+                            description: response.data.description,
+                        });
+                        setApiError("");
+                    } else {
+                        setApiError("Erro ao carregar categoria");
+                    }
+                })
+                .catch((error) => {
+                    setApiError("Erro ao carregar categoria");
+                })
+        }
+    }
+
+    useEffect(() => {
+        reset(entity);
+    }, [entity, reset]);
+
     const onSubmit = (data: ICategory) => {
         const category: ICategory = {
           ...data,
-          //id: entity.id,
+          id: entity.id,
         };
         CategoryService.save(category)
           .then((response) => {
