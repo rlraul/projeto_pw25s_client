@@ -165,7 +165,7 @@ export function AccountFormPage() {
         <div>
             {apiError && <div className="alert alert-danger">{apiError}</div>}
             <div className="text-center">
-                <Link to="/categories" className="text-primary">Voltar</Link>
+                <Link to="/accounts" className="text-primary">Voltar</Link>
             </div>
         </div>
         
