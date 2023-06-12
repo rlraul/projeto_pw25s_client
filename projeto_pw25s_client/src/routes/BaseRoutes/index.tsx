@@ -6,6 +6,7 @@ import { HomePage } from "../../pages/HomePage";
 import { CategoryListPage } from "../../pages/CategoryListPage";
 import { CategoryFormPage } from "../../pages/CategoryFormPage";
 import { AccountListPage } from "../../pages/AccountListPage";
+import { AccountFormPage } from "../../pages/AccountFormPage";
 
 export function BaseRoutes() {
     return (
@@ -25,8 +26,9 @@ export function BaseRoutes() {
             <Route path="/categories/:id" element={<CategoryFormPage />} />
 
             <Route path="/accounts" element={<AccountListPage />} />
-            {/* <Route path="/accounts/new" element={<CategoryFormPage />} />
-            <Route path="/accounts/:id" element={<CategoryFormPage />} /> */}  
+            <Route path="/accounts/new" element={<AccountFormPage />} />
+            <Route path="/accounts/:id" element={<AccountFormPage />} />
+            
           </Route>
   
         </Routes>

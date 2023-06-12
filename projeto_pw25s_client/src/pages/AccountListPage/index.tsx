@@ -14,7 +14,6 @@ export function AccountListPage() {
     const [data, setData] = useState<IAccount[]>([]);
     const [apiError, setApiError] = useState("");
     const navigate = useNavigate();
-    const [selectedaccountsId, setSelectedaccountsId] = useState(0);
 
     useEffect(() => {
         loadData();
@@ -57,9 +56,9 @@ export function AccountListPage() {
                 </Link>
             </div> 
 
-            <div className="d-flex justify-content-center ">
+            <div className="d-flex justify-content-center wrap">
                 {data.map((conta: IAccount) => (
-                    <Card m={2}>
+                    <Card size={'lg'} variant={'outline'} m={2}>
                         <CardHeader pt={5} pb={0}>
                             <Heading size='sm' className='text-center'>{conta.name}</Heading>
                             <Divider />
