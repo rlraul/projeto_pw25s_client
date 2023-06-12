@@ -14,3 +14,12 @@ export interface ICategory {
     name: string;
     description: string;
 }
+
+export interface IAccount {
+    id?: number;
+    name: String;
+    number: number;
+    agency: number;
+    bank: number;
+    amount: number;   
+}

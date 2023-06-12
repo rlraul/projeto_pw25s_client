@@ -5,6 +5,7 @@ import { SignupPage } from "../../pages/SignupPage";
 import { HomePage } from "../../pages/HomePage";
 import { CategoryListPage } from "../../pages/CategoryListPage";
 import { CategoryFormPage } from "../../pages/CategoryFormPage";
+import { AccountListPage } from "../../pages/AccountListPage";
 
 export function BaseRoutes() {
     return (
@@ -23,14 +24,9 @@ export function BaseRoutes() {
             <Route path="/categories/new" element={<CategoryFormPage />} />
             <Route path="/categories/:id" element={<CategoryFormPage />} />
 
-              {/* 
-              <Route path="/products" element={<ProductListPage />} />
-              <Route path="/products/new" element={<ProductFormPage />} />
-              <Route path="/products/:id" element={<ProductFormPage />} />
-  
-              <Route path="/products-v2" element={<ProductListPageV2 />} />
-              <Route path="/products-v2/new" element={<ProductFormPageV2 />} />
-              <Route path="/products-v2/:id" element={<ProductFormPageV2 />} /> */}
+            <Route path="/accounts" element={<AccountListPage />} />
+            {/* <Route path="/accounts/new" element={<CategoryFormPage />} />
+            <Route path="/accounts/:id" element={<CategoryFormPage />} /> */}  
           </Route>
   
         </Routes>
