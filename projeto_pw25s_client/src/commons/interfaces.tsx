@@ -23,3 +23,15 @@ export interface IAccount {
     bank: number;
     amount: number;   
 }
+
+export interface IFinancialMovement {
+    id?: number;
+    account: IAccount;
+    accountToTransfer?: IAccount;
+    value: number;
+    date: Date;
+    category: ICategory;
+    description: String;
+    situation: String;
+    type: String;
+}

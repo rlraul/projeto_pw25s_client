@@ -1,27 +1,27 @@
 import { IconButton, Menu, MenuButton, MenuItem, MenuList, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { ICategory } from "../../commons/interfaces";
 import { Link, useNavigate } from "react-router-dom";
-import CategoryService from "../../service/CategoryService";
 import {
-    BsPencilSquare,
+    BsCheckSquare,
     BsTrash3,
     BsThreeDotsVertical,
   } from "react-icons/bs";
+import { IFinancialMovement } from "../../commons/interfaces";
+import financialMovementService from "../../service/FinancialMovementService";
 
-export function CategoryListPage() {
+export function MovementListPage() {
 
-    const [data, setData] = useState<ICategory[]>([]);
+    const [data, setData] = useState<IFinancialMovement[]>([]);
     const [apiError, setApiError] = useState("");
     const navigate = useNavigate();
-    const [selectedCategoryId, setSelectedCategoryId] = useState(0);
+    const [selectedMovementId, setSelectedMovementId] = useState(0);
 
     useEffect(() => {
         loadData();
     }, []);
     
     const loadData = () => {
-        CategoryService.findAll()
+        financialMovementService.findAll()
         .then((response) => {
             setData(response.data);
             setApiError("");
@@ -35,25 +35,25 @@ export function CategoryListPage() {
     };
     
       const onRemove = (id: number) => {
-        CategoryService.remove(id)
+        financialMovementService.remove(id)
           .then((response) => {
             loadData();
             setApiError("");
           })
           .catch((error) => {
-            setApiError("Falha ao remover a categoria.");
+            setApiError("Falha ao remover a movimentação.");
           });
       };
     
     return (
         <div className="container">
             <div className="text-center">
-                <h3>Categorias</h3>
+                <h3>Movimentações</h3>
             </div>
             
             <div className="d-flex justify-content-end">
                 <Link to="/categories/new" className="btn btn-success">
-                    Nova Categoria
+                    Nova Movimentação
                 </Link>
             </div>
             
@@ -63,18 +63,30 @@ export function CategoryListPage() {
                         <Thead>
                             <Tr>
                                 <Th>#</Th>
-                                <Th>Nome</Th>
+                                <Th>Conta</Th>
+                                <Th>Conta trasferência</Th>
+                                <Th>Valor</Th>
+                                <Th>Data</Th>
+                                <Th>Categoria</Th>
+                                <Th>Situação</Th>
+                                <Th>Tipo</Th>
                                 <Th>Ações</Th>
                             </Tr>
                         </Thead>
                         <Tbody>
-                            {data.map((category: ICategory) => (
+                            {data.map((movement: IFinancialMovement) => (
                                 <Tr 
-                                    key={category.id}
+                                    key={movement.id}
                                     _hover={{background: "#eee"}}
                                 >
-                                    <Td>{category.id}</Td>
-                                    <Td>{category.name}</Td>
+                                    <Td>{movement.id}</Td>
+                                    <Td>{movement.account.name}</Td>
+                                    <Td>{movement.accountToTransfer?.name}</Td>
+                                    <Td>{movement.value}</Td>
+                                    <Td>{movement.date}</Td>
+                                    <Td>{movement.category.name}</Td>
+                                    <Td>{movement.situation}</Td>
+                                    <Td>{movement.type}</Td>
                                     <Td>
                                         <Menu>
                                             <MenuButton 
@@ -85,16 +97,16 @@ export function CategoryListPage() {
                                             />
                                             <MenuList>
                                                 <MenuItem 
-                                                    icon={<BsPencilSquare />}
-                                                    onClick={() => onEdit(`/categories/${category.id}`)}
+                                                    icon={<BsCheckSquare />}
+                                                    //onClick={() => onEdit(`/categories/${movement.id}`)}
                                                 >
-                                                    Editar
+                                                    Confirmar
                                                 </MenuItem>
                                                 <MenuItem 
                                                     icon={<BsTrash3 />}
-                                                    onClick={() => onRemove(category.id!)}
+                                                    //onClick={() => onRemove(movement.id!)}
                                                 >
-                                                    Remover
+                                                    Cancelar
                                                 </MenuItem>
                                             </MenuList>   
                                         </Menu>
