@@ -1,4 +1,4 @@
-import { IconButton, Menu, MenuButton, MenuItem, MenuList, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import { IconButton, Menu, MenuButton, MenuItem, MenuList, Select, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -6,28 +6,42 @@ import {
     BsTrash3,
     BsThreeDotsVertical,
   } from "react-icons/bs";
-import { IFinancialMovement } from "../../commons/interfaces";
+import { IAccount, IFinancialMovement } from "../../commons/interfaces";
 import financialMovementService from "../../service/FinancialMovementService";
+import { format } from "date-fns";
+import AccountService from "../../service/AccountService";
 
 export function MovementListPage() {
 
     const [data, setData] = useState<IFinancialMovement[]>([]);
     const [apiError, setApiError] = useState("");
     const navigate = useNavigate();
-    const [selectedMovementId, setSelectedMovementId] = useState(0);
+    const [selectedAccount, setSelectedAccount] = useState('');
+    const [accounts, setaccounts] = useState<IAccount[]>([]);
 
     useEffect(() => {
         loadData();
     }, []);
     
-    const loadData = () => {
+    const loadData = async () => {
+        //Pega dados do Select de contas
+        await AccountService.findAll()
+            .then((response) => {
+                setaccounts(response.data);
+                setApiError("");
+            })
+            .catch((responseError) => {
+                setApiError("Falha ao carregar lista de contas");
+            });
+        
+        //Pega dados das movimentações
         financialMovementService.findAll()
-        .then((response) => {
-            setData(response.data);
-            setApiError("");
-        }).catch((responseError) => {
-            setApiError(responseError.errors);
-        });
+            .then((response) => {
+                setData(response.data);
+                setApiError("");
+            }).catch((responseError) => {
+                setApiError(responseError.errors);
+            });
     }
 
     const onEdit = (url: string) => {
@@ -44,6 +58,30 @@ export function MovementListPage() {
             setApiError("Falha ao remover a movimentação.");
           });
       };
+
+    const handleSelectChange = (event) => {
+        const selectedValue = event.target.value;
+        console.log(selectedValue);
+        setSelectedAccount(selectedValue);
+      
+        if (selectedValue === '0') {
+            financialMovementService.findAll()
+                .then((response) => {
+                    setData(response.data);
+                    setApiError("");
+                }).catch((responseError) => {
+                    setApiError(responseError.errors);
+                });
+        } else {
+            financialMovementService.findAllByAccountId(selectedValue)
+                .then((response) => {
+                    setData(response.data);
+                    setApiError("");
+                }).catch((responseError) => {
+                    setApiError(responseError.errors);
+                });
+        }
+    };
     
     return (
         <div className="container">
@@ -52,9 +90,24 @@ export function MovementListPage() {
             </div>
             
             <div className="d-flex justify-content-end">
-                <Link to="/categories/new" className="btn btn-success">
-                    Nova Movimentação
-                </Link>
+                <div>
+                    <Select onChange={handleSelectChange} value={selectedAccount}>
+                        <option value="0">Selecione uma conta</option>
+                        {accounts.map((account: IAccount) => (
+                            <option 
+                                key={account.id} 
+                                value={account.id}
+                            >
+                                {account.name}
+                            </option>
+                        ))}
+                    </Select>
+                </div>
+                <div>
+                    <Link to="/movements/new" className="btn btn-success">
+                        Nova Movimentação
+                    </Link>
+                </div>
             </div>
             
             <div>
@@ -82,8 +135,8 @@ export function MovementListPage() {
                                     <Td>{movement.id}</Td>
                                     <Td>{movement.account.name}</Td>
                                     <Td>{movement.accountToTransfer?.name}</Td>
-                                    <Td>{movement.value}</Td>
-                                    <Td>{movement.date}</Td>
+                                    <Td>R${movement.value.toFixed(2)}</Td>
+                                    <Td>{format(new Date(movement.date), 'dd/MM/yyyy HH:mm:ss')}</Td>
                                     <Td>{movement.category.name}</Td>
                                     <Td>{movement.situation}</Td>
                                     <Td>{movement.type}</Td>

@@ -81,7 +81,7 @@ export function AccountListPage() {
                                 </div>
                                 <div className="d-flex">
                                     <Text fontSize='sm' className="fw-bold" m={1}>Saldo:</Text>
-                                    <Text fontSize='sm' m={1}>{conta.amount}</Text>
+                                    <Text fontSize='sm' m={1}>R${conta.amount.toFixed(2)}</Text>
                                 </div>
                                 <Divider />
                             </CardBody>

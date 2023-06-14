@@ -6,8 +6,12 @@ const findAll = () => {
     return api.get("/movements");
 }
 
-const save = (financialMovemente: IFinancialMovement) => {
-    return api.post("/movements", financialMovemente);
+const findAllByAccountId = (id: number) => {
+  return api.get(`/movements/account/${id}`);
+}
+
+const save = (financialMovement: IFinancialMovement) => {
+    return api.post("/movements", financialMovement);
   };
   
   const remove = (id: number) => {
@@ -18,12 +22,12 @@ const save = (financialMovemente: IFinancialMovement) => {
     return api.get(`/movements/${id}`);
   };
   
-
 const financialMovementService = {
     findAll,
     save,
     remove,
     findOne,
+    findAllByAccountId,
 }
 
 export default financialMovementService;
