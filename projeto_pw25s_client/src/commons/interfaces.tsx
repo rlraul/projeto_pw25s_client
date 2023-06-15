@@ -27,9 +27,9 @@ export interface IAccount {
 export interface IFinancialMovement {
     id?: number;
     account: IAccount;
-    accountToTransfer?: IAccount;
+    accountToTransfer: IAccount;
     value: number;
-    date: Date;
+    date: string;
     category: ICategory;
     description: String;
     situation: String;
