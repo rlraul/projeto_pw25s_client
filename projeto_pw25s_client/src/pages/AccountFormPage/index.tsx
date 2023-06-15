@@ -1,4 +1,4 @@
-import { Button, Card, CardBody, CardFooter, CardHeader, FormControl, FormErrorMessage, FormLabel, Heading, Input } from "@chakra-ui/react";
+import { Button, Card, CardBody, CardFooter, CardHeader, FormControl, FormErrorMessage, FormLabel, Grid, Heading, Input } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { IAccount } from "../../commons/interfaces";
@@ -75,81 +75,83 @@ export function AccountFormPage() {
       };
 
     return(
-        <div className="container">
+        <div className="container w-50">
             <h1 className="fs-2 text-center">Cadastro de conta</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <FormControl isInvalid={errors.name && true} mb={2}>
-                    <FormLabel htmlFor="name">Nome</FormLabel>
-                    <Input
-                        id="name"
-                        placeholder="Nome/Apelido da conta"
-                        {...register("name", {
-                        required: "O campo nome é obrigatório",
-                        })}
-                    />
-                    <FormErrorMessage>
-                        {errors.name && errors.name.message}
-                    </FormErrorMessage>
-                </FormControl>
+            <form onSubmit={handleSubmit(onSubmit)} className="mt-3">
+                <Grid templateColumns="repeat(2, 1fr)" gap={4}>
+                    <FormControl isInvalid={errors.name && true} mb={2}>
+                        <FormLabel htmlFor="name">Nome</FormLabel>
+                        <Input
+                            id="name"
+                            placeholder="Nome/Apelido da conta"
+                            {...register("name", {
+                            required: "O campo nome é obrigatório",
+                            })}
+                        />
+                        <FormErrorMessage>
+                            {errors.name && errors.name.message}
+                        </FormErrorMessage>
+                    </FormControl>
 
-                <FormControl isInvalid={errors.number && true} mb={2}>
-                    <FormLabel htmlFor="number">Número</FormLabel>
-                    <Input
-                        id="number"
-                        placeholder="Número da conta"
-                        {...register("number", {
-                            required: "É obrigatório informar o número da conta"
-                        })}
-                        type="number"
-                    />
+                    <FormControl isInvalid={errors.number && true} mb={2}>
+                        <FormLabel htmlFor="number">Número</FormLabel>
+                        <Input
+                            id="number"
+                            placeholder="Número da conta"
+                            {...register("number", {
+                                required: "É obrigatório informar o número da conta"
+                            })}
+                            type="number"
+                        />
 
-                    <FormErrorMessage>
-                        {errors.number && errors.number.message}
-                    </FormErrorMessage>
-                </FormControl>
+                        <FormErrorMessage>
+                            {errors.number && errors.number.message}
+                        </FormErrorMessage>
+                    </FormControl>
 
-                <FormControl isInvalid={errors.agency && true} mb={2}>
-                    <FormLabel htmlFor="agency">Agência</FormLabel>
-                    <Input
-                        id="agency"
-                        placeholder="Agência da conta"
-                        {...register("agency", {
-                            required: "É obrigatório informar a agência da conta"
-                        })}
-                        type="number"
-                    />
+                    <FormControl isInvalid={errors.agency && true} mb={2}>
+                        <FormLabel htmlFor="agency">Agência</FormLabel>
+                        <Input
+                            id="agency"
+                            placeholder="Agência da conta"
+                            {...register("agency", {
+                                required: "É obrigatório informar a agência da conta"
+                            })}
+                            type="number"
+                        />
 
-                    <FormErrorMessage>
-                        {errors.agency && errors.agency.message}
-                    </FormErrorMessage>
-                </FormControl>
+                        <FormErrorMessage>
+                            {errors.agency && errors.agency.message}
+                        </FormErrorMessage>
+                    </FormControl>
 
-                <FormControl isInvalid={errors.bank && true} mb={2}>
-                    <FormLabel htmlFor="bank">Banco</FormLabel>
-                    <Input
-                        id="bank"
-                        placeholder="Banco da conta"
-                        {...register("bank", {
-                            required: "É obrigatório informar o banco da conta"
-                        })}
-                        type="number"
-                    />
+                    <FormControl isInvalid={errors.bank && true} mb={2}>
+                        <FormLabel htmlFor="bank">Banco</FormLabel>
+                        <Input
+                            id="bank"
+                            placeholder="Banco da conta"
+                            {...register("bank", {
+                                required: "É obrigatório informar o banco da conta"
+                            })}
+                            type="number"
+                        />
 
-                    <FormErrorMessage>
-                        {errors.bank && errors.bank.message}
-                    </FormErrorMessage>
-                </FormControl>
+                        <FormErrorMessage>
+                            {errors.bank && errors.bank.message}
+                        </FormErrorMessage>
+                    </FormControl>
 
-                <FormControl mb={2}>
-                    <FormLabel htmlFor="amount">Saldo</FormLabel>
-                    <Input
-                        id="amount"
-                        placeholder="Saldo da conta"
-                        type="number"
-                        disabled
-                        {...register("amount")}
-                    />
-                </FormControl>
+                    <FormControl mb={2}>
+                        <FormLabel htmlFor="amount">Saldo</FormLabel>
+                        <Input
+                            id="amount"
+                            placeholder="Saldo da conta"
+                            type="number"
+                            disabled
+                            {...register("amount")}
+                        />
+                    </FormControl>
+                </Grid>
 
                 <div className="text-center m-2">
                     <Button

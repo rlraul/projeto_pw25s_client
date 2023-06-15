@@ -85,7 +85,7 @@ export function MovementFormPage() {
     return(
         <div className="container w-50">
             <h1 className="fs-2 text-center">Cadastro de Movimentação Financeira</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} className="mt-3">
                 
                 <Grid templateColumns="repeat(2, 1fr)" gap={4}>
                     <FormControl isInvalid={errors.type && true} mb={2}>

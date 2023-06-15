@@ -1,4 +1,4 @@
-import { Button, Card, CardBody, CardFooter, CardHeader, FormControl, FormErrorMessage, FormLabel, Heading, Input } from "@chakra-ui/react";
+import { Button, Card, CardBody, CardFooter, CardHeader, FormControl, FormErrorMessage, FormLabel, Grid, Heading, Input } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ICategory } from "../../commons/interfaces";
@@ -69,38 +69,40 @@ export function CategoryFormPage() {
       };
 
     return(
-        <div className="container">
+        <div className="container w-50">
         <h1 className="fs-2 text-center">Cadastro de categoria</h1>
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <FormControl isInvalid={errors.name && true} mb={2}>
-                <FormLabel htmlFor="name">Nome</FormLabel>
-                <Input
-                    id="name"
-                    placeholder="Nome da categoria"
-                    {...register("name", {
-                    required: "O campo nome é obrigatório",
-                    })}
-                />
-                <FormErrorMessage>
-                    {errors.name && errors.name.message}
-                </FormErrorMessage>
-            </FormControl>
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-3">
+            <Grid templateColumns="repeat(2, 1fr)" gap={4}>
+                <FormControl isInvalid={errors.name && true} mb={2}>
+                    <FormLabel htmlFor="name">Nome</FormLabel>
+                    <Input
+                        id="name"
+                        placeholder="Nome da categoria"
+                        {...register("name", {
+                        required: "O campo nome é obrigatório",
+                        })}
+                    />
+                    <FormErrorMessage>
+                        {errors.name && errors.name.message}
+                    </FormErrorMessage>
+                </FormControl>
 
-            <FormControl isInvalid={errors.description && true} mb={2}>
-                <FormLabel htmlFor="description">Descrição</FormLabel>
-                <Input
-                    id="description"
-                    placeholder="Descrição da categoria"
-                    {...register("description", {
-                        maxLength: { value: 255, message: "A descrição da categoria pode ter na máximo 255 caracteres" },
-                    })}
-                    type="text"
-                />
+                <FormControl isInvalid={errors.description && true} mb={2}>
+                    <FormLabel htmlFor="description">Descrição</FormLabel>
+                    <Input
+                        id="description"
+                        placeholder="Descrição da categoria"
+                        {...register("description", {
+                            maxLength: { value: 255, message: "A descrição da categoria pode ter na máximo 255 caracteres" },
+                        })}
+                        type="text"
+                    />
 
-                <FormErrorMessage>
-                    {errors.description && errors.description.message}
-                </FormErrorMessage>
-            </FormControl>
+                    <FormErrorMessage>
+                        {errors.description && errors.description.message}
+                    </FormErrorMessage>
+                </FormControl>
+            </Grid>
 
             <div className="text-center m-2">
                 <Button
