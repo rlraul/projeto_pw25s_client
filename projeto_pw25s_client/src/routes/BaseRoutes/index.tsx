@@ -8,6 +8,7 @@ import { CategoryFormPage } from "../../pages/CategoryFormPage";
 import { AccountListPage } from "../../pages/AccountListPage";
 import { AccountFormPage } from "../../pages/AccountFormPage";
 import { MovementListPage } from "../../pages/FinancialMovementListPage";
+import { MovementFormPage } from "../../pages/FinancialMovementFormPage";
 
 export function BaseRoutes() {
     return (
@@ -31,6 +32,7 @@ export function BaseRoutes() {
             <Route path="/accounts/:id" element={<AccountFormPage />} />
 
             <Route path="/movements" element={<MovementListPage />} />
+            <Route path="/movements/new" element={<MovementFormPage />} />
             
           </Route>
   
