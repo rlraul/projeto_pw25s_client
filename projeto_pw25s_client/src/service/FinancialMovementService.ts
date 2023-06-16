@@ -12,19 +12,24 @@ const findAllByAccountId = (id: number) => {
 
 const save = (financialMovement: IFinancialMovement) => {
     return api.post("/movements", financialMovement);
-  };
+};
+
+const updateMovementSituation = (id: number) => {
+  return api.post(`/movements/${id}`);
+};
   
-  const remove = (id: number) => {
-    return api.delete(`/movements/${id}`);
-  };
-  
-  const findOne = (id: number) => {
-    return api.get(`/movements/${id}`);
-  };
-  
+const remove = (id: number) => {
+  return api.delete(`/movements/${id}`);
+};
+
+const findOne = (id: number) => {
+  return api.get(`/movements/${id}`);
+};
+
 const financialMovementService = {
     findAll,
     save,
+    updateMovementSituation,
     remove,
     findOne,
     findAllByAccountId,

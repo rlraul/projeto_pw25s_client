@@ -151,7 +151,7 @@ export function MovementListPage() {
                                             <MenuList>
                                                 <MenuItem 
                                                     icon={<BsCheckSquare />}
-                                                    //onClick={() => onEdit(`/categories/${movement.id}`)}
+                                                    onClick={() => financialMovementService.updateMovementSituation(movement.id!)}
                                                 >
                                                     Confirmar
                                                 </MenuItem>
