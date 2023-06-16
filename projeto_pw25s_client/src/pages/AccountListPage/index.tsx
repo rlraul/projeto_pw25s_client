@@ -104,6 +104,7 @@ export function AccountListPage() {
                                     <MenuItem 
                                         icon={<BsTrash3 />}
                                         onClick={() => onRemove(conta.id!)}
+                                        isDisabled={conta.amount > 0}
                                     >
                                         Remover
                                     </MenuItem>
