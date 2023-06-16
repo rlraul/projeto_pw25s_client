@@ -138,8 +138,12 @@ export function MovementListPage() {
                                     <Td>R${movement.value.toFixed(2)}</Td>
                                     <Td>{format(new Date(movement.date), 'dd/MM/yyyy HH:mm:ss')}</Td>
                                     <Td>{movement.category.name}</Td>
-                                    <Td>{movement.situation}</Td>
-                                    <Td>{movement.type}</Td>
+                                    <Td>
+                                        {movement.situation === "PAID" ? "Confirmado" : movement.situation === "CANCELED" ? "Cancelada" : "A Confirmar"}
+                                    </Td>
+                                    <Td>
+                                        {movement.type === "CREDIT" ? "Crédito" : movement.type === "DEBIT" ? "Débito" : "Transferência"}
+                                    </Td>
                                     <Td>
                                         <Menu>
                                             <MenuButton 
@@ -147,6 +151,7 @@ export function MovementListPage() {
                                                 aria-label="Actions"
                                                 icon={<BsThreeDotsVertical size={20} />}
                                                 variant="ghost"
+                                                isDisabled={movement.situation !== "PENDING"}
                                             />
                                             <MenuList>
                                                 <MenuItem 
@@ -157,7 +162,7 @@ export function MovementListPage() {
                                                 </MenuItem>
                                                 <MenuItem 
                                                     icon={<BsTrash3 />}
-                                                    //onClick={() => onRemove(movement.id!)}
+                                                    onClick={() => financialMovementService.remove(movement.id!)}
                                                 >
                                                     Cancelar
                                                 </MenuItem>
