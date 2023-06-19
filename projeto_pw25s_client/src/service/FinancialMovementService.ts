@@ -26,6 +26,14 @@ const findOne = (id: number) => {
   return api.get(`/movements/${id}`);
 };
 
+const findAllLastFiveCreditsMovements = () => {
+  return api.get("/movements/page?page=0&size=5&type=CREDIT");
+}
+
+const findAllLastFiveDebitsMovements = () => {
+  return api.get("/movements/page?page=0&size=5&type=DEBIT");
+}
+
 const financialMovementService = {
     findAll,
     save,
@@ -33,6 +41,8 @@ const financialMovementService = {
     remove,
     findOne,
     findAllByAccountId,
+    findAllLastFiveCreditsMovements,
+    findAllLastFiveDebitsMovements,
 }
 
 export default financialMovementService;
