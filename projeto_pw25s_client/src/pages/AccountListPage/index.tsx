@@ -9,6 +9,7 @@ import {
     BsTrash3,
     BsThreeDotsVertical,
   } from "react-icons/bs";
+import Swal from 'sweetalert2';
 
 export function AccountListPage() {
 
@@ -35,13 +36,24 @@ export function AccountListPage() {
     };
     
     const onRemove = (id: number) => {
-        AccountService.remove(id)
-        .then((response) => {
-        loadData();
-        setApiError("");
-        })
-        .catch((error) => {
-        setApiError("Falha ao remover a conta.");
+        Swal.fire({
+            icon: 'question',
+            title: 'Confirmar remoção',
+            text: 'Tem certeza de que deseja remover esta conta?',
+            showCancelButton: true,
+            confirmButtonText: 'Sim',
+            cancelButtonText: 'Cancelar',
+            }).then((result) => {
+            if (result.isConfirmed) {
+                AccountService.remove(id)
+                .then((response) => {
+                    loadData();
+                    setApiError("");
+                })
+                .catch((error) => {
+                    setApiError("Falha ao remover a conta.");
+                });
+            }
         });
     };
     

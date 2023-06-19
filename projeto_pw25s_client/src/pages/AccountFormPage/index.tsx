@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { IAccount } from "../../commons/interfaces";
 import { useState, useEffect } from "react";
 import AccountService from "../../service/AccountService";
+import Swal from "sweetalert2";
 
 export function AccountFormPage() {
 
@@ -68,9 +69,19 @@ export function AccountFormPage() {
         AccountService.save(conta)
           .then((response) => {
             navigate("/accounts");
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Conta salva',
+                text: 'A conta foi salva com sucesso!',
+            });
           })
           .catch((error) => {
-            setApiError(error.message);
+            Swal.fire({
+                icon: 'error',
+                title: 'Conta não salva',
+                text: 'Ocorreu um erro ao salvar a conta :(',
+            });
           });
       };
 

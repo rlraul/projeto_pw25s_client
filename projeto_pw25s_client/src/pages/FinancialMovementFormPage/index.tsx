@@ -8,6 +8,7 @@ import financialMovementService from "../../service/FinancialMovementService";
 import CategoryService from "../../service/CategoryService";
 import AccountService from "../../service/AccountService";
 import { format } from "date-fns";
+import Swal from "sweetalert2";
 
 export function MovementFormPage() {
 
@@ -105,10 +106,19 @@ export function MovementFormPage() {
         financialMovementService.save(movement)
           .then((response) => {
             navigate("/movements");
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Movimentação realizada',
+                text: 'A movimentação financeira foi realizada com sucesso!',
+            });
           })
           .catch((error) => {
-            console.log(movement);
-            setApiError("Erro ao incluir nova movimentação financeira!");
+            Swal.fire({
+                icon: 'error',
+                title: 'Movimentação não realizada',
+                text: 'Ocorreu um erro ao salvar a movimentação financeira :(',
+            });
           });
     };
 

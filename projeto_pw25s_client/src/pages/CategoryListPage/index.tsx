@@ -8,6 +8,7 @@ import {
     BsTrash3,
     BsThreeDotsVertical,
   } from "react-icons/bs";
+import Swal from "sweetalert2";
 
 export function CategoryListPage() {
 
@@ -34,16 +35,32 @@ export function CategoryListPage() {
         navigate(url);
     };
     
-      const onRemove = (id: number) => {
-        CategoryService.remove(id)
-          .then((response) => {
-            loadData();
-            setApiError("");
-          })
-          .catch((error) => {
-            setApiError("Falha ao remover a categoria.");
-          });
-      };
+    const onRemove = (id: number) => {
+        Swal.fire({
+            icon: 'question',
+            title: 'Confirmar remoção',
+            text: 'Tem certeza de que deseja remover esta categoria?',
+            showCancelButton: true,
+            confirmButtonText: 'Sim',
+            cancelButtonText: 'Cancelar',
+            }).then((result) => {
+            if (result.isConfirmed) {
+                CategoryService.remove(id)
+                .then((response) => {
+                    loadData();
+                    setApiError("");
+                    Swal.fire({
+                    icon: 'success',
+                    title: 'Categoria removida',
+                    text: 'A categoria foi removida com sucesso!',
+                    });
+                })
+                .catch((error) => {
+                    setApiError("Falha ao remover a categoria.");
+                });
+            }
+        });
+    };
     
     return (
         <div className="container">

@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { ICategory } from "../../commons/interfaces";
 import { useState, useEffect } from "react";
 import CategoryService from "../../service/CategoryService";
+import Swal from "sweetalert2";
 
 export function CategoryFormPage() {
 
@@ -62,9 +63,19 @@ export function CategoryFormPage() {
         CategoryService.save(category)
           .then((response) => {
             navigate("/categories");
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Categoria salva',
+                text: 'A categoria foi salva com sucesso!',
+            });
           })
           .catch((error) => {
-            setApiError(error.message);
+            Swal.fire({
+                icon: 'error',
+                title: 'Categoria não salva',
+                text: 'Ocorreu um erro ao salvar a categoria :(',
+            });
           });
       };
 
