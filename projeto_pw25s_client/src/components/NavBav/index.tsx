@@ -1,5 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
-import logo from "../../assets/logo.png";
+import { NavLink } from "react-router-dom";
 import AuthService from "../../service/AuthService";
 
 export function NavBar() {
@@ -10,12 +9,13 @@ export function NavBar() {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light mb-3">
-        {/* <Link to="/" className="navbar-brand">
-        <img src={logo} width="60" alt="UTFPR" />
-        </Link> */}
-        <div className="collapse navbar-collapse" id="navbarText">
-            <ul className="navbar-nav mr-auto">
-                <li className="nav-item">
+      <div className="container-fluid">
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPrincipal" aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarPrincipal">
+            <ul className="navbar-nav me-auto">
+                <li className="nav-item me-auto">
                     <NavLink
                       to="/"
                       className={(navData) =>
@@ -25,7 +25,7 @@ export function NavBar() {
                       Home
                     </NavLink>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item me-auto">
                     <NavLink
                       to="/categories"
                       className={(navData) =>
@@ -35,7 +35,7 @@ export function NavBar() {
                       Categorias
                     </NavLink>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item me-auto">
                     <NavLink
                       to="/accounts"
                       className={(navData) =>
@@ -46,7 +46,7 @@ export function NavBar() {
                     </NavLink>
                 </li>
 
-                <li className="nav-item">
+                <li className="nav-item me-auto">
                     <NavLink
                       to="/movements"
                       className={(navData) =>
@@ -57,8 +57,9 @@ export function NavBar() {
                     </NavLink>
                 </li>
             </ul>
-            <button className="btn btn-light" onClick={onClickLogout}> &times; Sair</button>
+            <button className="btn btn-light m-2" onClick={onClickLogout}> &times; Sair</button>
         </div>
-    </nav>   
+      </div>
+  </nav>   
   );
 }
