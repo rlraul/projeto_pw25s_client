@@ -1,5 +1,5 @@
+import './homePage.css';
 import { Card, CardBody, CardHeader, Divider, Text } from "@chakra-ui/react";
-import bodyImg from "../../assets/stonks.png";
 import { useEffect, useState } from "react";
 import AccountService from "../../service/AccountService";
 import { IAccount, IFinancialMovement } from "../../commons/interfaces";
@@ -48,7 +48,7 @@ export function HomePage() {
                 <h1 className="row">Controle Financeiro</h1> 
             </div>
 
-            <div className="d-flex justify-content-center">
+            <div className="card-container">
                 <div className="m-2">
                     <Card minH={200} maxH={400}>
                         <CardHeader m={0} pb={2} className="text-center">
