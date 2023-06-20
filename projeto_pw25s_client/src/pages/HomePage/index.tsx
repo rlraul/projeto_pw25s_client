@@ -50,7 +50,7 @@ export function HomePage() {
 
             <div className="d-flex justify-content-center">
                 <div className="m-2">
-                    <Card>
+                    <Card minH={200} maxH={400}>
                         <CardHeader m={0} pb={2} className="text-center">
                             <h4>Saldo das contas</h4>
                             <Divider m={0}/>
@@ -67,7 +67,7 @@ export function HomePage() {
                 </div>
             
                 <div className="m-2">
-                    <Card>
+                    <Card minH={200} maxH={200}>
                         <CardHeader m={0} pb={2} className="text-center">
                             <h4>5 Ultimas receitas</h4>
                             <Divider m={0}/>
@@ -76,7 +76,6 @@ export function HomePage() {
                             {dataLastCredits.map((creditMovement: IFinancialMovement) => (
                                 <div className="d-flex">
                                     <Text fontSize='sm' className="fw-bold" m={1}>{creditMovement.account.name}:</Text>
-                                    <Text fontSize='sm' className="fw-bold" m={1}>{creditMovement.type}:</Text>
                                     <Text fontSize='sm' m={1}>R${creditMovement.value.toFixed(2)}</Text>
                                 </div>    
                             ))}
@@ -85,16 +84,16 @@ export function HomePage() {
                 </div>  
 
                 <div className="m-2">
-                    <Card>
+                    <Card minH={200} maxH={200}>
                         <CardHeader m={0} pb={2} className="text-center">
                             <h4>5 Ultimas despesas</h4>
                             <Divider m={0}/>
                         </CardHeader>
                         <CardBody pt={0}>
-                            {dataLastDebits.map((conta: IFinancialMovement) => (
+                            {dataLastDebits.map((debitMovement: IFinancialMovement) => (
                                 <div className="d-flex">
-                                    <Text fontSize='sm' className="fw-bold" m={1}>{conta.name}:</Text>
-                                    <Text fontSize='sm' m={1}>R${conta.value.toFixed(2)}</Text>
+                                    <Text fontSize='sm' className="fw-bold" m={1}>{debitMovement.account.name}:</Text>
+                                    <Text fontSize='sm' m={1}>R${debitMovement.value.toFixed(2)}</Text>
                                 </div>    
                             ))}
                         </CardBody>
