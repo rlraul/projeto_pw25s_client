@@ -219,7 +219,7 @@ export function MovementFormPage() {
                             {...register("date", {
                                 required: "É obrigatório informar a data da movimentação",
                             })}
-                            type="date"
+                            type="text"
                         />
                         <FormErrorMessage>
                             {errors.date && errors.date.message}

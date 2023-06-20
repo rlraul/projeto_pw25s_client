@@ -27,7 +27,7 @@ export function HomePage() {
 
         financialMovementService.findAllLastFiveCreditsMovements()
         .then((response) => {
-            setDataLastCredits(response.data);
+            setDataLastCredits(response.data.content);
             setApiError("");
         }).catch((responseError) => {
             setApiError('Erro ao buscar dados dos créditos:' + responseError.errors);
@@ -35,7 +35,7 @@ export function HomePage() {
 
         financialMovementService.findAllLastFiveDebitsMovements()
         .then((response) => {
-            setDataLastDebits(response.data);
+            setDataLastDebits(response.data.content);
             setApiError("");
         }).catch((responseError) => {
             setApiError('Erro ao buscar dados dos débitos:' + responseError.errors);
@@ -66,7 +66,7 @@ export function HomePage() {
                     </Card>
                 </div>
             
-                {/* <div className="m-2">
+                <div className="m-2">
                     <Card>
                         <CardHeader m={0} pb={2} className="text-center">
                             <h4>5 Ultimas receitas</h4>
@@ -91,15 +91,15 @@ export function HomePage() {
                             <Divider m={0}/>
                         </CardHeader>
                         <CardBody pt={0}>
-                            {dataAccounts.map((conta: IAccount) => (
+                            {dataLastDebits.map((conta: IFinancialMovement) => (
                                 <div className="d-flex">
                                     <Text fontSize='sm' className="fw-bold" m={1}>{conta.name}:</Text>
-                                    <Text fontSize='sm' m={1}>R${conta.amount.toFixed(2)}</Text>
+                                    <Text fontSize='sm' m={1}>R${conta.value.toFixed(2)}</Text>
                                 </div>    
                             ))}
                         </CardBody>
                     </Card>
-                </div>   */}
+                </div>  
             </div> 
         </div>
     );
