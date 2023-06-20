@@ -125,7 +125,17 @@ export function MovementFormPage() {
     useEffect(() => {
         const formattedDate = format(new Date(), "dd-MM-yyyy'T'HH:mm:ss");
         setValue('date', formattedDate);
-      }, [setValue]);
+        setValue("type", "CREDIT");
+        setValue("situation", "PAID");
+
+        if (categories.length > 0) {
+            setValue("category.id", categories[0].id);
+        }
+        
+        if (accounts.length > 0) {
+            setValue("account.id", accounts[0].id);
+        }
+      }, [categories, accounts, setValue]);
 
     return(
         <div className="container w-50">
@@ -136,8 +146,7 @@ export function MovementFormPage() {
                 <FormControl isInvalid={errors.type && true} mb={2}>
                     <FormLabel htmlFor="type">Tipo</FormLabel>
                     <Select
-                        id="type"
-                        placeholder="Selecione o tipo"
+                        id="type"  
                         {...register("type", {
                             required: "O campo tipo é obrigatório",
                         })}
@@ -203,8 +212,10 @@ export function MovementFormPage() {
                             placeholder="Valor da movimentação"
                             {...register("value", {
                                 required: "É obrigatório informar o valor da movimentação",
+                                validate: (value) => parseFloat(value) > 0 || "O valor deve ser maior que zero", 
                             })}
                             type="number"
+                            step="0.01"
                         />
                         <FormErrorMessage>
                             {errors.value && errors.value.message}
