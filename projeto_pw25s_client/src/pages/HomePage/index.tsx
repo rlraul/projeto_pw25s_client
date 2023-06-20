@@ -43,9 +43,9 @@ export function HomePage() {
     }
 
     return(
-        <div className="container">
+        <div className="content-container">
             <div className="text-center">
-                <h1 className="row">Controle Financeiro</h1> 
+                <h1 className="row text-center">Controle Financeiro</h1> 
             </div>
 
             <div className="card-container">
