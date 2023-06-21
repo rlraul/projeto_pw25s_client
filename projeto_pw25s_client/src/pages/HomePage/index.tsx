@@ -1,5 +1,5 @@
 import './homePage.css';
-import { Card, CardBody, CardHeader, Divider, Text } from "@chakra-ui/react";
+import { Card, CardBody, CardHeader, Divider, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import AccountService from "../../service/AccountService";
 import { IAccount, IFinancialMovement } from "../../commons/interfaces";
@@ -43,59 +43,92 @@ export function HomePage() {
     }
 
     return(
-        <div className="content-container">
+        <div className="homePage-content-container">
             <div className="text-center">
                 <h1 className="row text-center">Controle Financeiro</h1> 
             </div>
 
-            <div className="card-container">
-                <div className="m-2">
-                    <Card minH={200} maxH={400}>
+            <div className='homePage-card-container'>
+                <div className="mb-3">
+                    <Card className='homePage-card'>
                         <CardHeader m={0} pb={2} className="text-center">
                             <h4>Saldo das contas</h4>
-                            <Divider m={0}/>
                         </CardHeader>
                         <CardBody pt={0}>
-                            {dataAccounts.map((conta: IAccount) => (
-                                <div className="d-flex">
-                                    <Text fontSize='sm' className="fw-bold" m={1}>{conta.name}:</Text>
-                                    <Text fontSize='sm' m={1}>R${conta.amount.toFixed(2)}</Text>
-                                </div>    
-                            ))}
+                            <TableContainer className='homePage-card-grid' style={{overflowY: "auto"}}>
+                                <Table>
+                                    <Thead>
+                                        <Tr>
+                                            <Th>Conta</Th>
+                                            <Th>Saldo</Th>
+                                        </Tr>
+                                    </Thead>
+                                    <Tbody>
+                                        {dataAccounts.map((conta: IAccount) => (
+                                        <Tr>
+                                            <Td>{conta.name}</Td>
+                                            <Td>R${conta.amount.toFixed(2)}</Td>
+                                        </Tr>
+                                        ))}    
+                                    </Tbody>
+                                </Table>
+                            </TableContainer>
                         </CardBody>
                     </Card>
                 </div>
             
-                <div className="m-2">
-                    <Card minH={200} maxH={200}>
+                <div className="mb-3">
+                    <Card className='homePage-card'>
                         <CardHeader m={0} pb={2} className="text-center">
                             <h4>5 Ultimas receitas</h4>
-                            <Divider m={0}/>
                         </CardHeader>
                         <CardBody pt={0}>
-                            {dataLastCredits.map((creditMovement: IFinancialMovement) => (
-                                <div className="d-flex">
-                                    <Text fontSize='sm' className="fw-bold" m={1}>{creditMovement.account.name}:</Text>
-                                    <Text fontSize='sm' m={1}>R${creditMovement.value.toFixed(2)}</Text>
-                                </div>    
-                            ))}
+                            <TableContainer className='homePage-card-grid' style={{overflowY: "auto"}}>
+                                <Table>
+                                    <Thead>
+                                        <Tr>
+                                            <Th>Conta</Th>
+                                            <Th>Valor</Th>
+                                        </Tr>
+                                    </Thead>
+                                    <Tbody>
+                                        {dataLastCredits.map((creditMovement: IFinancialMovement) => (
+                                        <Tr>
+                                            <Td>{creditMovement.account.name}</Td>
+                                            <Td>R${creditMovement.value.toFixed(2)}</Td>
+                                        </Tr>
+                                        ))}    
+                                    </Tbody>
+                                </Table>
+                            </TableContainer>
                         </CardBody>
                     </Card>
                 </div>  
 
-                <div className="m-2">
-                    <Card minH={200} maxH={200}>
+                <div className="mb-3">
+                    <Card className='homePage-card'>
                         <CardHeader m={0} pb={2} className="text-center">
                             <h4>5 Ultimas despesas</h4>
-                            <Divider m={0}/>
                         </CardHeader>
                         <CardBody pt={0}>
-                            {dataLastDebits.map((debitMovement: IFinancialMovement) => (
-                                <div className="d-flex">
-                                    <Text fontSize='sm' className="fw-bold" m={1}>{debitMovement.account.name}:</Text>
-                                    <Text fontSize='sm' m={1}>R${debitMovement.value.toFixed(2)}</Text>
-                                </div>    
-                            ))}
+                            <TableContainer className='homePage-card-grid' style={{overflowY: "auto"}}>
+                                <Table>
+                                    <Thead>
+                                        <Tr>
+                                            <Th>Conta</Th>
+                                            <Th>Valor</Th>
+                                        </Tr>
+                                    </Thead>
+                                    <Tbody>
+                                    {dataLastDebits.map((debitMovement: IFinancialMovement) => (
+                                        <Tr>
+                                            <Td>{debitMovement.account.name}</Td>
+                                            <Td>R${debitMovement.value.toFixed(2)}</Td>
+                                        </Tr>
+                                        ))}    
+                                    </Tbody>
+                                </Table>
+                            </TableContainer>
                         </CardBody>
                     </Card>
                 </div>  

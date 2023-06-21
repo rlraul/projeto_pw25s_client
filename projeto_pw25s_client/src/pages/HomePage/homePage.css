@@ -1,15 +1,25 @@
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.content-container {
+.homePage-content-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%; 
+  margin: 0 auto;
+}
+
+.homePage-card-container {
+  /* display: flex;
+  flex-wrap: wrap; */
+  gap: 10px;
+  width: 50%;
+  max-height: 100%;
+}
+
+.homePage-card {
+  max-height: 300px;
+  width: 100%;
+}
+
+.homePage-card-grid {  
+  max-height:200px;
 }

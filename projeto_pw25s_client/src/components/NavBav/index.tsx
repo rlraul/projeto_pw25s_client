@@ -57,7 +57,7 @@ export function NavBar() {
                     </NavLink>
                 </li>
             </ul>
-            <button className="btn btn-light m-2" onClick={onClickLogout}> &times; Sair</button>
+            <button className="btn btn-light" onClick={onClickLogout}> &times; Sair</button>
         </div>
       </div>
   </nav>   
