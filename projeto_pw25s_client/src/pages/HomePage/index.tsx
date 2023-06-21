@@ -44,7 +44,7 @@ export function HomePage() {
 
     return(
         <div className="homePage-content-container">
-            <div className="text-center">
+            <div className="text-center mb-2">
                 <h1 className="row text-center">Controle Financeiro</h1> 
             </div>
 
